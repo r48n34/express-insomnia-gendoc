@@ -1,6 +1,6 @@
 # express-insomnia-gendoc
 
-Auto generate a API Docs with your express.js for import at insomnia.
+Auto generate a insomnia API Docs with your express.js for import.
 
 ### Setup / Install:
 
