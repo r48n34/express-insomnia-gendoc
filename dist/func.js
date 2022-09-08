@@ -56,8 +56,8 @@ var express_list_endpoints_1 = __importDefault(require("express-list-endpoints")
 var nanoid_1 = require("nanoid");
 function routeGenDoc(app, currentPort, options) {
     return __awaiter(this, void 0, void 0, function () {
-        var routeGenOptions, currentTime, routeObj, wrkUid, envAndjarId, envUid, spcUid, routeArr, expressRouterArr, pushedFlag, _i, expressRouterArr_1, v, apiDoc;
-        return __generator(this, function (_a) {
+        var routeGenOptions, currentTime, routeObj, wrkUid, envAndjarId, envUid, spcUid, routeArr, expressRouterArr, pushedFlag, _i, expressRouterArr_1, v, _a, _b, routeMethod, apiDoc;
+        return __generator(this, function (_c) {
             routeGenOptions = __assign({ collectionsName: "My API Router", documentsName: "insomnia_doc", export_source: "insomnia.desktop.app:v2022.5.1" }, options);
             currentTime = new Date().getTime();
             routeObj = {
@@ -78,30 +78,33 @@ function routeGenDoc(app, currentPort, options) {
             pushedFlag = false;
             for (_i = 0, expressRouterArr_1 = expressRouterArr; _i < expressRouterArr_1.length; _i++) {
                 v = expressRouterArr_1[_i];
-                apiDoc = {
-                    "_id": "req_" + (0, nanoid_1.nanoid)(32),
-                    "parentId": wrkUid,
-                    "modified": currentTime + 3,
-                    "created": currentTime,
-                    "url": "http://localhost:".concat(currentPort).concat(v.path),
-                    "name": "".concat(v.path),
-                    "description": "",
-                    "method": v.methods[0],
-                    "body": {},
-                    "parameters": [],
-                    "headers": [],
-                    "authentication": {},
-                    "metaSortKey": -1 * currentTime,
-                    "isPrivate": false,
-                    "settingStoreCookies": true,
-                    "settingSendCookies": true,
-                    "settingDisableRenderRequestBody": false,
-                    "settingEncodeUrl": true,
-                    "settingRebuildPath": true,
-                    "settingFollowRedirects": "global",
-                    "_type": "request"
-                };
-                routeArr.push(apiDoc);
+                for (_a = 0, _b = v.methods; _a < _b.length; _a++) {
+                    routeMethod = _b[_a];
+                    apiDoc = {
+                        "_id": "req_" + (0, nanoid_1.nanoid)(32),
+                        "parentId": wrkUid,
+                        "modified": currentTime + 2,
+                        "created": currentTime,
+                        "url": "http://localhost:".concat(currentPort).concat(v.path),
+                        "name": "".concat(v.path),
+                        "description": "",
+                        "method": routeMethod,
+                        "body": {},
+                        "parameters": [],
+                        "headers": [],
+                        "authentication": {},
+                        "metaSortKey": -1 * currentTime,
+                        "isPrivate": false,
+                        "settingStoreCookies": true,
+                        "settingSendCookies": true,
+                        "settingDisableRenderRequestBody": false,
+                        "settingEncodeUrl": true,
+                        "settingRebuildPath": true,
+                        "settingFollowRedirects": "global",
+                        "_type": "request"
+                    };
+                    routeArr.push(apiDoc);
+                }
                 if (!pushedFlag) {
                     routeArr.push({
                         "_id": wrkUid,

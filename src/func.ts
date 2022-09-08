@@ -31,42 +31,48 @@ export async function routeGenDoc(app:Express, currentPort: number, options?:Rou
     const wrkUid = "wrk_" + nanoid(32) //"wrk_2a2d 9d72 ee23 45da b928 a28f a015 f623"
     const envAndjarId = nanoid(40)
     const envUid = "env_" + envAndjarId //"env_149d 10b8 b1b2 20b5 6a51 998d 14ff 244c 039b 6c15"
-    // const jarUid = "wrk_" + envAndjarId //"jar_149d 10b8 b1b2 20b5 6a51 998d 14ff 244c 039b 6c15"
     const spcUid = "spc_" + nanoid(32) //"spc_0103 7dc5 0361 48f3 860b b00b 3303 6a48"
+    // const jarUid = "wrk_" + envAndjarId //"jar_149d 10b8 b1b2 20b5 6a51 998d 14ff 244c 039b 6c15"
 
     let routeArr:any = [];
     const expressRouterArr = listEndpoints(app);
 
     let pushedFlag = false;
+
     for(let v of expressRouterArr){
-        
-        const apiDoc = {
-            "_id": "req_" + nanoid(32), // "req_08b1 0382 6491 4f49 992a fed1 917a a853",
-            "parentId": wrkUid,
-            "modified": currentTime + 3,
-            "created": currentTime,
-            "url": `http://localhost:${currentPort}${v.path}`,
-            "name": `${v.path}`,
-            "description": "",
-            "method": v.methods[0],
-            "body": {},
-            "parameters": [],
-            "headers": [],
-            "authentication": {},
-            "metaSortKey": -1 * currentTime,
-            "isPrivate": false,
-            "settingStoreCookies": true,
-            "settingSendCookies": true,
-            "settingDisableRenderRequestBody": false,
-            "settingEncodeUrl": true,
-            "settingRebuildPath": true,
-            "settingFollowRedirects": "global",
-            "_type": "request"
+
+        for(let routeMethod of v.methods){
+
+            const apiDoc = {
+                "_id": "req_" + nanoid(32), // "req_08b1 0382 6491 4f49 992a fed1 917a a853",
+                "parentId": wrkUid,
+                "modified": currentTime + 2,
+                "created": currentTime,
+                "url": `http://localhost:${currentPort}${v.path}`,
+                "name": `${v.path}`,
+                "description": "",
+                "method": routeMethod,
+                "body": {},
+                "parameters": [],
+                "headers": [],
+                "authentication": {},
+                "metaSortKey": -1 * currentTime,
+                "isPrivate": false,
+                "settingStoreCookies": true,
+                "settingSendCookies": true,
+                "settingDisableRenderRequestBody": false,
+                "settingEncodeUrl": true,
+                "settingRebuildPath": true,
+                "settingFollowRedirects": "global",
+                "_type": "request"
+            }
+
+            routeArr.push(apiDoc as any);
+
         }
-
-        routeArr.push(apiDoc as any);
-
+        
         if(!pushedFlag){
+
             routeArr.push({
                 "_id": wrkUid,
                 "parentId": null,
@@ -77,6 +83,7 @@ export async function routeGenDoc(app:Express, currentPort: number, options?:Rou
                 "scope": "collection",
                 "_type": "workspace"
             });
+
             pushedFlag = true;
         }
     }

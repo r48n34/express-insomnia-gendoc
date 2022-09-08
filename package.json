@@ -1,6 +1,6 @@
 {
   "name": "express-insomnia-gendoc",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Auto generate a API Docs with your express.js.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
