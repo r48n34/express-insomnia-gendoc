@@ -2,6 +2,13 @@
 
 Auto generate a insomnia API Docs with your express.js for import.
 
+<p align="left">
+
+<a href="https://www.npmjs.com/package/express-insomnia-gendoc"> <img src="https://img.shields.io/npm/v/express-insomnia-gendoc" /> </a>
+<a href="https://github.com/r48n34/express-insomnia-gendoc"><img src="https://img.shields.io/github/actions/workflow/status/r48n34/express-insomnia-gendoc/test.yml" /></a>
+
+</p>
+
 ### Setup / Install:
 
 ```
